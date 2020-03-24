@@ -14,15 +14,16 @@ import requests
 #若验证码识别率过低可以根据生成的captcha_pic效果自行调整二值化阈值
 #本脚本仅供学习交流，否则后果自负
 
-username = ''
-password = ''
+#该账号密码为http://authserver.gdou.edu.cn/authserver/login处的账号与密码
+username = 'Enter your username here'
+password = 'Enter your password here'
 
 
 def get_cookie():
     option = webdriver.ChromeOptions()
     option.add_argument('--headless')
     option.add_argument('--disable-gpu')
-    # 浏览器驱动位置
+    # 浏览器驱动位置，请自行配置并输入路径
     driver = webdriver.Chrome(r'浏览器驱动路径/chromedriver.exe',chrome_options=option)
     driver.maximize_window()
     try_time = 0
@@ -40,7 +41,7 @@ def get_cookie():
 
         size = driver.find_element_by_id('captchaImg').size
 
-        # 手动修正验证码位置,如果发现验证码识别错误可以考虑自行修改
+        # 手动修正验证码位置,如果发现验证码识别率低可以考虑自行修改
         left = 687
         top =  250
         right = 688 + size['width'] -3
@@ -158,7 +159,7 @@ def sign_in(global_cookie):
     'Accept-Encoding': 'gzip',
     'Cookie': global_cookie
     }
-
+#请自行修改该处的经纬度和地址
     body={"signInstanceWid":get_signInstanceWid,"longitude":113.2457494300,"latitude":23.1303438200,"isMalposition":1,"abnormalReason":" ","signPhotoUrl":"","position":"广东省广州市荔湾区中山八路29号"}
 
     r = requests.post(url,headers=headers,json=body)
