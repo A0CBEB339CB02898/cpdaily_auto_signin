@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # python 3.7.0
 #
+import sys
 from selenium import webdriver
 from time import sleep
 from PIL import Image, ImageEnhance
@@ -140,6 +141,10 @@ def get_signInstanceWid(global_cookie):
     body={}
 
     r = requests.post(url,headers=headers,json=body)
+    
+    if r.json()['datas']['signedTasks'][0]['signRate']=='1':
+        print("今天已签到")
+        sys.exit()
     signINstanceWid = r.json()['datas']['unSignedTasks'][0]['signInstanceWid']
     return signINstanceWid
 
