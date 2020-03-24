@@ -160,7 +160,7 @@ def sign_in(global_cookie):
     'Cookie': global_cookie
     }
 #请自行修改该处的经纬度和地址
-    body={"signInstanceWid":get_signInstanceWid,"longitude":113.2457494300,"latitude":23.1303438200,"isMalposition":1,"abnormalReason":" ","signPhotoUrl":"","position":"广东省广州市荔湾区中山八路29号"}
+    body={"signInstanceWid":get_signInstanceWid(global_cookie),"longitude":113.2457494300,"latitude":23.1303438200,"isMalposition":1,"abnormalReason":" ","signPhotoUrl":"","position":"广东省广州市荔湾区中山八路29号"}
 
     r = requests.post(url,headers=headers,json=body)
     if r.json()['message'] =='SUCCESS':
@@ -168,5 +168,4 @@ def sign_in(global_cookie):
 
 if __name__ == "__main__":
     global_cookie = get_cookie()
-    get_signInstanceWid(global_cookie)
     sign_in(get_cookie)
