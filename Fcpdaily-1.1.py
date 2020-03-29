@@ -19,7 +19,10 @@ import requests
 username = 'Please enter the username here'
 password = 'Please enter the password here'
 
-
+#截图路径
+o = sys.path[0]
+captcha_pic = o +".\\captcha_pic.png"
+captcha_pic_aft = o + '.\\captcha_pic_aft.png'
 
 def get_cookie():
     option = webdriver.ChromeOptions()
@@ -34,8 +37,6 @@ def get_cookie():
         # 等待
         driver.implicitly_wait(5) 
 
-        captcha_pic = "./captcha_pic.png"
-        captcha_pic_aft = './captcha_pic_aft.png'
 
 
         #截屏
