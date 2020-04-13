@@ -5,7 +5,7 @@
 
 本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4
 ```
- pip安装pytesseract
+ pip install pytesseract
  pip install requests
  pip install pyDes
  pip install beautifulsoup4
