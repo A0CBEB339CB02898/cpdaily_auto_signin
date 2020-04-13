@@ -4,12 +4,12 @@
 ## 感谢 @Starix610 对本项目的帮助
 
 本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4
-
-    $ pip install pytesseract
-    $ pip install requests
-    $ pip install pyDes
-    $ pip install beautifulsoup4
-
+```
+ pip安装pytesseract
+ pip install requests
+ pip install pyDes
+ pip install beautifulsoup4
+```
 本项目不维护，佛系更新。不包含周期执行功能，建议部署在windows计划任务或者远端服务器上  
   
 
