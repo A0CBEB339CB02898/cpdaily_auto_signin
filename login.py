@@ -22,8 +22,22 @@ def login(username,password):
     login_url = "https://authserver.gdou.edu.cn/authserver/login?service=https%3A%2F%2Fgdou.cpdaily.com%2Fportal%2Flogin"
 
     captcha_url = 'https://authserver.gdou.edu.cn/authserver/captcha.html'
-
-    lt = BeautifulSoup(session.get(login_url,verify=False).text, features='html.parser').select_one('input[name="lt"]')['value']
+    
+    lt_headers={
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'Host': 'authserver.gdou.edu.cn',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'cross-site',
+        'Sec-Fetch-User': '?1',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
+    }
+    lt = BeautifulSoup(session.get(login_url,headers=lt_headers,verify=False).text, features='html.parser').select_one('input[name="lt"]')['value']
     try_time = 0
     while True:
         try_time = try_time+1
@@ -41,11 +55,13 @@ def login(username,password):
             '_eventId': 'submit',
             'rmShown':'1'
         }
-        s = session.post(login_url,data=body,verify=False)
 
-        wrongMes = BeautifulSoup(s.text,features='html.parser').select_one(".errMsg").text
+        
+        #获取网页中的错误提示
+        wrongMes = BeautifulSoup(session.post(login_url,data=body,verify=False).text,features='html.parser').select_one(".errMsg")
 
-        cookies=requests.utils.dict_from_cookiejar(s.cookies)
+        cookies=requests.utils.dict_from_cookiejar(session.cookies)
+
         if 'MOD_AUTH_CAS' in cookies:
             #登录成功
             MOD_AUTH_CAS = cookies['MOD_AUTH_CAS']
@@ -54,10 +70,11 @@ def login(username,password):
             print('识别率:',100/try_time,'%')
             break
         
-        elif wrongMes=='\n您提供的用户名或者密码有误\n':
-            signin_cookie="0"
-            print(wrongMes)
-            break
+        elif type(wrongMes)!=None:
+            if wrongMes.text=='\n您提供的用户名或者密码有误\n':
+                signin_cookie="0"
+                print(wrongMes.text)
+                break
         
         #限制最大尝试数
         elif try_time>max_tryTime:
@@ -69,3 +86,4 @@ def login(username,password):
 
 if __name__ == "__main__":
     login('2222','2222')
+
