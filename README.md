@@ -3,7 +3,7 @@
 ## 感谢 @ZimoLoveShuang 对本项目的帮助
 ## 感谢 @Starix610 对本项目的帮助
 
-本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4
+本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4,还需要额外安装tesseract-OCR，请自行百度教程。
 ```
  pip install pytesseract
  pip install requests
