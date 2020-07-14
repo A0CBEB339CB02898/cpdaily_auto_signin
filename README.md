@@ -3,7 +3,7 @@
 ## 感谢 @ZimoLoveShuang 对本项目的帮助
 ## 感谢 @Starix610 对本项目的帮助
 
-本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4,还需要额外安装tesseract-OCR，请参阅此篇 https://www.cnblogs.com/zrmw/p/11840288.html 
+本项目依赖python3、pytesseract、requests、pyDes、beautifulsoup4,还需要额外安装tesseract-OCR，请自行百度教程。
 ```
  pip install pytesseract
  pip install requests
@@ -13,7 +13,7 @@
 本项目不维护，佛系更新。不包含周期执行功能，建议部署在Windows计划任务或远端服务器上  
 
 ### 使用
-###### 1.安装上文提到的依赖，其中tesseract-OCR安装后可能需要修改pytesseract的某些内容，请自行百度教程
+###### 1.安装上文提到的依赖，其中tesseract-OCR安装后可能需要修改pytesseract的某些内容，请参阅此篇 https://www.cnblogs.com/zrmw/p/11840288.html 
 ###### 2.打开config.ini ，根据说明填写相关信息，保存
 ###### 3.运行Fcpdaily-2.0.py，即可完成一次签到（控制台会有文字提示，如果脚本闪退可能说明某些配置尚未完成，请自行调试）
 
